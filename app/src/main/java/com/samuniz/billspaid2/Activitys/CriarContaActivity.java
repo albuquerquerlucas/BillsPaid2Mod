@@ -31,9 +31,7 @@ public class CriarContaActivity extends AppCompatActivity {
     private FirebaseAuth authUsuario;
     private FirebaseUser authUser;
     private DatabaseReference dbConta, dbUsuario;
-    private String idUsuCurrent;
     private ArrayList<String> listaContas;
-    public int tamLista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +75,7 @@ public class CriarContaActivity extends AppCompatActivity {
 
         Conta conta = new Conta(id, descricao, valor);
         dbConta.child(conta.getIdConta()).setValue(conta);
+        listaContas.add(conta.getIdConta());
 
         Usuario usu = new Usuario();
         final List<List<String>> list = new ArrayList<>();
@@ -101,7 +100,7 @@ public class CriarContaActivity extends AppCompatActivity {
             listaContas.add(String.valueOf(i));
         }
 
-        listaContas.add(conta.getIdConta());
+
         DatabaseReference refForAtributos = FirebaseDatabase.getInstance().getReference(SingletonFirebase.DB_USUARIOS);
         refForAtributos.child(authUser.getUid()).child("listaContas").setValue(listaContas);
 
