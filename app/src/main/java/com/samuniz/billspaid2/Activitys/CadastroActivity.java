@@ -1,5 +1,6 @@
 package com.samuniz.billspaid2.Activitys;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroActivity extends Activity {
 
     private EditText edtNomeC, edtEmailC, edtSenhaC;
     private Button btnCadastrarC;

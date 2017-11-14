@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.samuniz.billspaid2">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,11 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.CadastroActivity" />
-        <activity android:name=".Activitys.MainActivity" />
-        <activity android:name=".Activitys.ContaActivity" />
-        <activity android:name=".Activitys.ContasActivity" />
-        <activity android:name=".Activitys.DespesasActivity" />
-        <activity android:name=".Activitys.ReceitasActivity"></activity>
+        <activity android:name=".Activitys.MainActivity"
+            android:label="Dashboard"/>
+        <activity android:name=".Activitys.ContasActivity"
+            android:label="Contas"/>
+        <activity android:name=".Activitys.DespesasActivity"
+            android:label="Despesas"/>
+        <activity android:name=".Activitys.ReceitasActivity"
+            android:label="Receitas"></activity>
     </application>
 
 </manifest>

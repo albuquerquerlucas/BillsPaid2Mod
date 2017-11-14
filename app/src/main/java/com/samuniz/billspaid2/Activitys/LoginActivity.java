@@ -18,7 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.samuniz.billspaid2.R;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends Activity implements View.OnClickListener {
 
     private EditText edtEmailL, edtSenhaL;
     private Button btnLoginL, btnCadastroL;
