@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1008561744565",
+    "firebase_url": "https://billspaid2-3663b.firebaseio.com",
+    "project_id": "billspaid2-3663b",
+    "storage_bucket": "billspaid2-3663b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008561744565:android:41e1cc6ad01b62bb",
+        "android_client_info": {
+          "package_name": "com.samuniz.billspaid2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008561744565-5mq6olmhnb5ouo151vc0m9h4f6ubuvqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKUIk-t-8zst55u2I9gOZ1E0swexZUCc4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
