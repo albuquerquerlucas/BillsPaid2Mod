@@ -4,138 +4,103 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.samuniz.billspaid2.Entitys.Conta;
-import com.samuniz.billspaid2.Entitys.Usuario;
+import com.samuniz.billspaid2.Entitys.Cliente;
 import com.samuniz.billspaid2.R;
-import com.samuniz.billspaid2.Util.SingletonFirebase;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private EditText editUsuario, editEmail, editSenha;
-    private Button btnCadastroLogin, btnCadastroSalvar;
+    private EditText edtNomeC, edtEmailC, edtSenhaC;
+    private Button btnCadastrarC;
+    private String nomeInput, emailInput, senhaInput;
     private FirebaseAuth mAuth;
-    private FirebaseUser user;
-    private DatabaseReference bdReference;
+    private FirebaseUser mUser;
+    private DatabaseReference mReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
-        mAuth = SingletonFirebase.getAutenticacao();
-        user = SingletonFirebase.getUser();
-        bdReference = SingletonFirebase.getReferenciaFirebase(SingletonFirebase.DB_USUARIOS);
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        mReference = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
 
-        editUsuario = findViewById(R.id.cadUsuario);
-        editEmail = findViewById(R.id.cadEmail);
-        editSenha = findViewById(R.id.cadSenha);
-        btnCadastroLogin = findViewById(R.id.btnCadastroLogin);
-        btnCadastroSalvar = findViewById(R.id.btnCadastroSalvar);
+        edtNomeC = findViewById(R.id.edtNomeC);
+        edtEmailC = findViewById(R.id.edtEmailC);
+        edtSenhaC = findViewById(R.id.edtSenhaC);
+        btnCadastrarC = findViewById(R.id.btnCadastrarC);
 
-        btnCadastroLogin.setOnClickListener(new View.OnClickListener() {
+        btnCadastrarC.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                cadastroLogin();
-            }
-        });
-
-        btnCadastroSalvar.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-
-                String usuario = editUsuario.getText().toString().trim();
-                String email = editEmail.getText().toString().trim();
-                String senha = editSenha.getText().toString().trim();
-
-                if(usuario.equals("")){
-                    editUsuario.setError("Preencher este campo!");
-                    editUsuario.requestFocus();
-                    return;
-                }
-                if(email.equals("")){
-                    editEmail.setError("Preencher este campo!");
-                    editEmail.requestFocus();
-                    return;
-                }
-                if(senha.equals("")){
-                    editSenha.setError("Preencher este campo!");
-                    editSenha.requestFocus();
-                    return;
-                }
-                cadastroSalvar(usuario, email, senha);
+            public void onClick(View v) {
+                validarDadosDeCadastro();
             }
         });
     }
 
-    private void cadastroSalvar(final String usuario, final String email, final String senha){
+    private void validarDadosDeCadastro(){
+        nomeInput = edtNomeC.getText().toString().trim();
+        emailInput = edtEmailC.getText().toString().trim();
+        senhaInput = edtSenhaC.getText().toString().trim();
 
-
-        mAuth.createUserWithEmailAndPassword(email, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-
-                            List<String> lista = new ArrayList<>();
-                            Usuario usu = new Usuario(user.getUid(), usuario, email, senha, lista);
-                            bdReference.child(user.getUid()).setValue(usu);
-                            cadastroLogin();
-
-                        } else {
-                            try {
-                                throw task.getException();
-                            } catch (FirebaseAuthWeakPasswordException e){
-                                editSenha.setError("Senha fraca!");
-                                editSenha.requestFocus();
-                            } catch (FirebaseAuthInvalidCredentialsException e){
-                                editEmail.setError("E-mail inválido!");
-                                editEmail.requestFocus();
-                            } catch (FirebaseAuthUserCollisionException e){
-                                editEmail.setError("E-mail já existe!");
-                                editEmail.requestFocus();
-                            } catch (Exception e){
-                                Log.e("Cadastro", e.getMessage());
-                            }
-                        }
-                    }
-                });
+        if(!nomeInput.equals("") && !emailInput.equals("") && !senhaInput.equals("")){
+            efetuarCadastro(emailInput, senhaInput);
+        }else{
+            Toast.makeText(getApplicationContext(), "Preencha os campos.", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void cadastroLogin (){
-        Intent i = new Intent(CadastroActivity.this, LoginActivity.class);
-        startActivity(i);
+    private void efetuarCadastro(String email, String senha) {
+        mAuth.createUserWithEmailAndPassword(email, senha).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                List<String> lista = new ArrayList<>();
+                String id = mUser.getUid();
+                Cliente cliente = new Cliente(id, nomeInput, lista);
+                mReference.child("clientes").child(id).setValue(cliente);
+                goToLogin();
+                Toast.makeText(getApplicationContext(), "Cadastrado com Sucesso!", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Erro ao efetuar cadastro, tente novamente!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void goToLogin(){
+        Intent it = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(it);
         finish();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        cadastroLogin ();
+        goToLogin();
     }
 }

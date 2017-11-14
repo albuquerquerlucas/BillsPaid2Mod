@@ -1,9 +1,4 @@
 <resources>
     <string name="app_name">BillsPaid 2</string>
-    <string name="cadastrar">CADASTRAR</string>
-    <string name="login">ENTRAR</string>
-    <string name="login2">JÁ POSSUO CADASTRO</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="paid">Pago</string>
-    <string name="save">SALVAR</string>
+
 </resources>

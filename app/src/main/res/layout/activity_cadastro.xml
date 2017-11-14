@@ -1,79 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.samuniz.billspaid2.Activitys.CadastroActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="250dp"
-        android:layout_height="95dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/cadUsuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/logo_bilsspaid" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/cadUsuario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Usuário"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/cadEmail"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="180dp"
+            android:layout_height="180dp" />
 
-    <EditText
-        android:id="@+id/cadEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/cadSenha"
-        app:layout_constraintEnd_toEndOf="@+id/cadUsuario"
-        app:layout_constraintStart_toStartOf="@+id/cadUsuario"
-        app:layout_constraintTop_toBottomOf="@+id/cadUsuario" />
+        <EditText
+            android:id="@+id/edtNomeC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:hint="Nome"/>
 
-    <EditText
-        android:id="@+id/cadSenha"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btnCadastroSalvar"
-        app:layout_constraintEnd_toEndOf="@+id/cadEmail"
-        app:layout_constraintStart_toStartOf="@+id/cadEmail"
-        app:layout_constraintTop_toBottomOf="@+id/cadEmail" />
+        <EditText
+            android:id="@+id/edtEmailC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"
+            android:hint="E-mail"/>
 
-    <Button
-        android:id="@+id/btnCadastroSalvar"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/cadastrar"
-        app:layout_constraintBottom_toTopOf="@+id/btnCadastroLogin"
-        app:layout_constraintEnd_toEndOf="@+id/cadSenha"
-        app:layout_constraintStart_toStartOf="@+id/cadSenha"
-        app:layout_constraintTop_toBottomOf="@+id/cadSenha" />
+        <EditText
+            android:id="@+id/edtSenhaC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone"
+            android:hint="Senha"/>
 
-    <Button
-        android:id="@+id/btnCadastroLogin"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/login2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/btnCadastroSalvar"
-        app:layout_constraintStart_toStartOf="@+id/btnCadastroSalvar"
-        app:layout_constraintTop_toBottomOf="@+id/btnCadastroSalvar" />
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnCadastrarC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="cadastrar"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -17,13 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.CadastroActivity" />
-        <activity android:name=".Activitys.CriarContaActivity" />
-        <activity android:name=".Activitys.CriarDespesaActivity" />
-        <activity android:name=".Activitys.ExibirContaActivity" />
-        <activity
-            android:name=".Activitys.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activitys.MainActivity" />
+        <activity android:name=".Activitys.ContaActivity" />
+        <activity android:name=".Activitys.ContasActivity" />
+        <activity android:name=".Activitys.DespesasActivity" />
+        <activity android:name=".Activitys.ReceitasActivity"></activity>
     </application>
 
 </manifest>

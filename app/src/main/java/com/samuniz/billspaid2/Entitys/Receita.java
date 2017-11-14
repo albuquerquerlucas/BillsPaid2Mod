@@ -3,86 +3,45 @@ package com.samuniz.billspaid2.Entitys;
 import java.io.Serializable;
 
 /**
- * Created by Lucas on 13/11/2017.
+ * Created by Lucas on 14/11/2017.
  */
 
 public class Receita implements Serializable {
 
-    private String idReceita;
-    private String valorReceita;
-    private String dataReceita;
-    private String descricaoReceita;
-    private String categoriaReceita;
-    private String contaReceita;
-    private String checkReceita;
+    private String id;
+    private String descicao;
+    private String valor;
 
-    public Receita (){
+    public Receita() {
     }
 
-    public Receita(String id, String valorReceita, String dataReceita, String descricaoReceita,
-                   String categoriaReceita, String contaReceita, String checkReceita) {
-        this.idReceita = id;
-        this.valorReceita = valorReceita;
-        this.dataReceita = dataReceita;
-        this.descricaoReceita = descricaoReceita;
-        this.categoriaReceita = categoriaReceita;
-        this.contaReceita = contaReceita;
-        this.checkReceita = checkReceita;
+    public Receita(String id, String descicao, String valor) {
+        this.id = id;
+        this.descicao = descicao;
+        this.valor = valor;
     }
 
-    public String getIdReceita() {
-        return idReceita;
+    public String getId() {
+        return id;
     }
 
-    public void setIdReceita(String idReceita) {
-        this.idReceita = idReceita;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getValorReceita() {
-        return valorReceita;
+    public String getDescicao() {
+        return descicao;
     }
 
-    public void setValorReceita(String valorReceita) {
-        this.valorReceita = valorReceita;
+    public void setDescicao(String descicao) {
+        this.descicao = descicao;
     }
 
-    public String getDataReceita() {
-        return dataReceita;
+    public String getValor() {
+        return valor;
     }
 
-    public void setDataReceita(String dataReceita) {
-        this.dataReceita = dataReceita;
-    }
-
-    public String getDescricaoReceita() {
-        return descricaoReceita;
-    }
-
-    public void setDescricaoReceita(String descricaoReceita) {
-        this.descricaoReceita = descricaoReceita;
-    }
-
-    public String getCategoriaReceita() {
-        return categoriaReceita;
-    }
-
-    public void setCategoriaReceita(String categoriaReceita) {
-        this.categoriaReceita = categoriaReceita;
-    }
-
-    public String getContaReceita() {
-        return contaReceita;
-    }
-
-    public void setContaReceita(String contaReceita) {
-        this.contaReceita = contaReceita;
-    }
-
-    public String getCheckReceita() {
-        return checkReceita;
-    }
-
-    public void setCheckReceita(String checkReceita) {
-        this.checkReceita = checkReceita;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 }

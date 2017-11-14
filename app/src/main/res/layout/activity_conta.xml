@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.samuniz.billspaid2.Activitys.ExibirContaActivity">
+    tools:context="com.samuniz.billspaid2.Activitys.ContaActivity">
 
 </android.support.constraint.ConstraintLayout>
